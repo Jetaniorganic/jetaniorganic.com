@@ -1,0 +1,34 @@
+const products = [
+  {
+    name: "Moringa Powder 200g",
+    price: "₹299",
+    image: "images/moringa.jpg",
+  },
+  {
+    name: "Herbal Soap – Gir Cow Base",
+    price: "₹149",
+    image: "images/soap.jpg",
+  },
+];
+
+const container = document.querySelector(".product-grid");
+products.forEach((p) => {
+  container.innerHTML += `
+    <div class="product">
+      <img src="${p.image}" alt="${p.name}" width="200" />
+      <h3>${p.name}</h3>
+      <p><strong>${p.price}</strong></p>
+    </div>
+  `;
+});
+
+// WhatsApp Order Form
+document.getElementById("orderForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const name = this.name.value;
+  const product = this.product.value;
+  const address = this.address.value;
+  const phone = this.phone.value;
+  const msg = `Hi, I am ${name}. I want to order: ${product}. My address is ${address}. Contact: ${phone}`;
+  window.open(`https://wa.me/91YOURNUMBER?text=${encodeURIComponent(msg)}`, "_blank");
+});
